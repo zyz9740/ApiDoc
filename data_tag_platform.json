@@ -1,0 +1,917 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "关键API接口，关键数据库字段",
+    "version": "1.0.0",
+    "title": "数据标注平台"
+  },
+  "tags": [
+    {
+      "name": "User Module",
+      "description": "用户模块"
+    },
+    {
+      "name": "Dataset Module",
+      "description": "数据集模块"
+    },
+    {
+      "name": "Sample Module",
+      "description": "样本模块"
+    },
+    {
+      "name": "Tag Module",
+      "description": "样本标注模块"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/user/login": {
+      "post": {
+        "tags": [
+          "User Module"
+        ],
+        "summary": "User login",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "You can also allow users to register with other fileds(e.g., phone, email).",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/user/register": {
+      "post": {
+        "tags": [
+          "User Module"
+        ],
+        "summary": "User register",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "The two fields are required, you can also add other fileds (e.g., phone, email).",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/dataset": {
+      "post": {
+        "tags": [
+          "Dataset Module"
+        ],
+        "summary": "Add a new dataset",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "desc": {
+                  "type": "string"
+                },
+                "sample_type": {
+                  "type": "string"
+                },
+                "tag_type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Dataset"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/datasets": {
+      "get": {
+        "tags": [
+          "Dataset Module"
+        ],
+        "summary": "Get all existing dataset",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page_num",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "publisher_id",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Dataset"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dataset not found"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/dataset/{id}": {
+      "put": {
+        "tags": [
+          "Dataset Module"
+        ],
+        "summary": "Update an existing dataset",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "desc": {
+                  "type": "string"
+                },
+                "sample_type": {
+                  "type": "string"
+                },
+                "tag_type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Dataset"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Dataset not found"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Dataset Module"
+        ],
+        "summary": "Delete an existing dataset",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Only the owner of the manager can delete it.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Dataset Module"
+        ],
+        "summary": "Get an existing dataset or a item",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Dataset"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        }
+      }
+    },
+    "/api/sample": {
+      "post": {
+        "tags": [
+          "Sample Module"
+        ],
+        "summary": "Add a new sample",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "These are required, you can also add other fileds.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dataset_id": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Sample"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/samples": {
+      "get": {
+        "tags": [
+          "Sample Module"
+        ],
+        "summary": "Get all existing samples",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page_num",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "dataset_id",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Sample"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Sample not found"
+          }
+        }
+      }
+    },
+    "/api/sample/{id}": {
+      "get": {
+        "tags": [
+          "Sample Module"
+        ],
+        "summary": "Get an existing Sample",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Sample"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Sample Module"
+        ],
+        "summary": "Delete an existing Sample",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Only the owner of the manager can delete it.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Sample not found"
+          }
+        }
+      }
+    },
+    "/api/tag": {
+      "post": {
+        "tags": [
+          "Tag Module"
+        ],
+        "summary": "Add a new tag",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sample_id": {
+                  "type": "string"
+                },
+                "begin_pos": {
+                  "type": "string"
+                },
+                "end_pos": {
+                  "type": "string"
+                },
+                "tag": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Tag"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/tags": {
+      "get": {
+        "tags": [
+          "Tag Module"
+        ],
+        "summary": "Get all existing tags",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page_num",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "dataset_id",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "$ref": "#/definitions/Tag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tag not found"
+          }
+        }
+      }
+    },
+    "/api/tag/{id}": {
+      "delete": {
+        "tags": [
+          "Tag Module"
+        ],
+        "summary": "Delete an existing tag",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Only the owner of the manager can delete it.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "error_msg": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Tag not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Dataset": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "publisher_id": {
+          "type": "string",
+          "description": "数据集发布者id"
+        },
+        "pub_time": {
+          "type": "string",
+          "description": "数据集上传时间"
+        },
+        "desc": {
+          "type": "string",
+          "description": "数据集描述"
+        },
+        "sample_type": {
+          "type": "string",
+          "description": "样本类型（图片、文字、语音）"
+        },
+        "tag_type": {
+          "type": "string",
+          "description": "标注类型（分类、打分、文本）"
+        }
+      }
+    },
+    "Sample": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "dataset_id": {
+          "type": "string",
+          "description": "该 sample 属于哪个数据集"
+        },
+        "content": {
+          "type": "string",
+          "description": "样本内容，自行考虑储存形式"
+        },
+        "sample_type": {
+          "type": "string",
+          "description": "样本类型（图片、文字、语音），必须与数据集的类型相同"
+        },
+        "tag_type": {
+          "type": "string",
+          "description": "标注类型（分类、打分、文本），必须与数据集类型相同"
+        }
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "sample_id": {
+          "type": "string",
+          "description": "该tag属于哪一个sample"
+        },
+        "tagger_id": {
+          "type": "string",
+          "description": "标注者id"
+        },
+        "tag_time": {
+          "type": "string",
+          "description": "标注时间"
+        },
+        "begin_pos": {
+          "type": "string",
+          "description": "起始标注位置，语音数据用时间戳表示，图像数据用左上角坐标表示，文本数据用起始文字位置表示。",
+          "example": {
+            "time": "1356s",
+            "location": "(0,2)",
+            "bchar": "35"
+          }
+        },
+        "end_pos": {
+          "type": "string",
+          "description": "结束标注位置，图像数据用右下角坐标表示，其他同上。如果不需要分段标注，可以考虑忽略这个字段或者用全部数据表示。",
+          "example": {
+            "time": "1365s",
+            "location": "(2,3)",
+            "bchar": "56"
+          }
+        },
+        "tag": {
+          "type": "string",
+          "description": "标注内容，可以是文本、分类编号、打分等",
+          "example": {
+            "text": "string",
+            "category": "string",
+            "score": "integer"
+          }
+        }
+      }
+    }
+  }
+}

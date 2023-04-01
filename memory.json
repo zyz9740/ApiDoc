@@ -1,0 +1,643 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Location-based的墙",
+    "description": "`关键API接口，关键数据库字段`",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "User Module",
+      "description": "用户模块"
+    },
+    {
+      "name": "Post Module",
+      "description": "发帖模块"
+    },
+    {
+      "name": "Comment Module",
+      "description": "评论模块"
+    }
+  ],
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "tags": [
+          "User Module"
+        ],
+        "summary": "用户注册",
+        "description": "",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If register successfully, return the user information in response data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "username": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": [
+          "User Module"
+        ],
+        "summary": "用户登录",
+        "operationId": "userLogin",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/post": {
+      "get": {
+        "tags": [
+          "Post Module"
+        ],
+        "summary": "查询帖子",
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page_num",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "location_x",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "location_y",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "distance",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "posts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "example": "1"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "location_x": {
+                                "type": "number",
+                                "example": 123.1
+                              },
+                              "location_y": {
+                                "type": "number",
+                                "example": 123.2
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Post Module"
+        ],
+        "summary": "创建帖子",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content_type": {
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "location_x": {
+                  "type": "number"
+                },
+                "location_y": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Post"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/post/{post_id}": {
+      "put": {
+        "tags": [
+          "Post Module"
+        ],
+        "summary": "更新帖子",
+        "description": "",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "body",
+            "in": "query",
+            "required": true,
+            "description": "Location is not allowed to modified.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "posts": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/Post"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Post Module"
+        ],
+        "summary": "显示某个post的具体信息",
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "post_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "example": "1"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "content_type": {
+                          "type": "integer",
+                          "example": "0(text only), 1(image or video)"
+                        },
+                        "text": {
+                          "type": "string",
+                          "example": "This is a new text"
+                        },
+                        "media_url": {
+                          "type": "string",
+                          "example": "http://aaa"
+                        },
+                        "location_x": {
+                          "type": "number",
+                          "example": 123.1
+                        },
+                        "location_y": {
+                          "type": "number",
+                          "example": 123.2
+                        },
+                        "comments": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/comment": {
+      "get": {
+        "tags": [
+          "Comment Module"
+        ],
+        "summary": "查看评论",
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page_num",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "post_id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "posts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "example": "1"
+                              },
+                              "content_type": {
+                                "type": "integer",
+                                "example": "0(text only), 1(image or video)"
+                              },
+                              "media_url": {
+                                "type": "string",
+                                "example": "http://aaa"
+                              },
+                              "text": {
+                                "type": "string",
+                                "example": "This is a new comment"
+                              },
+                              "user_id": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Comment Module"
+        ],
+        "summary": "创建评论",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "post_id": {
+                  "type": "string"
+                },
+                "content_type": {
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error_msg": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Comment"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "11"
+          },
+          "username": {
+            "type": "string",
+            "example": "theUser"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          },
+          "is_manager": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "xml": {
+          "name": "user"
+        }
+      },
+      "Post": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content_type": {
+            "type": "integer",
+            "example": "0(text only), 1(image or video)"
+          },
+          "text": {
+            "type": "string",
+            "example": "This is a new text"
+          },
+          "media_url": {
+            "type": "string",
+            "example": "http://aaa"
+          },
+          "location_x": {
+            "type": "number",
+            "example": 123.1
+          },
+          "location_y": {
+            "type": "number",
+            "example": 123.2
+          }
+        },
+        "xml": {
+          "name": "message"
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "content_type": {
+            "type": "integer",
+            "example": "0(text only), 1(image or video)"
+          },
+          "media_url": {
+            "type": "string",
+            "example": "http://aaa"
+          },
+          "text": {
+            "type": "string",
+            "example": "This is a new comment"
+          }
+        },
+        "xml": {
+          "name": "comment"
+        }
+      }
+    }
+  }
+}
