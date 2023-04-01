@@ -247,7 +247,10 @@
                   "type": "string"
                 },
                 "data": {
-                  "$ref": "#/definitions/Dataset"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Dataset"
+                  }
                 }
               }
             }
@@ -522,7 +525,10 @@
                   "type": "string"
                 },
                 "data": {
-                  "$ref": "#/definitions/Sample"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Sample"
+                    }
                 }
               }
             }
@@ -736,7 +742,10 @@
                   "type": "string"
                 },
                 "data": {
-                  "$ref": "#/definitions/Tag"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Tag"
+                  }
                 }
               }
             }
