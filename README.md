@@ -75,3 +75,4 @@ response: {
 ```
 # 提出 API 修改建议
 按照如下步骤创建 issue 即可
+![image](https://github.com/zyz9740/ApiDoc/blob/main/report.png)
