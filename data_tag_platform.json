@@ -72,8 +72,7 @@
                   "type": "string"
                 },
                 "data": {
-                  "type": "object",
-                  "properties": {}
+                  "type": "object"
                 }
               }
             }
@@ -247,9 +246,14 @@
                   "type": "string"
                 },
                 "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Dataset"
+                  "type": "object",
+                  "properties": {
+                    "datasets": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Dataset"
+                      }
+                    }
                   }
                 }
               }
@@ -525,10 +529,15 @@
                   "type": "string"
                 },
                 "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Sample"
+                  "type": "object",
+                  "properties": {
+                    "samples": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Sample"
+                      }
                     }
+                  }
                 }
               }
             }
@@ -742,9 +751,14 @@
                   "type": "string"
                 },
                 "data": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/Tag"
+                  "type": "object",
+                  "properties": {
+                    "tags": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Tag"
+                      }
+                    }
                   }
                 }
               }
