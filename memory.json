@@ -30,7 +30,7 @@
         "operationId": "createUser",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "schema": {
@@ -85,7 +85,7 @@
         "operationId": "userLogin",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "schema": {
@@ -228,7 +228,7 @@
         "summary": "创建帖子",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "schema": {
@@ -294,7 +294,7 @@
           },
           {
             "name": "body",
-            "in": "query",
+            "in": "body",
             "required": true,
             "description": "Location is not allowed to modified.",
             "schema": {
@@ -508,7 +508,7 @@
         "summary": "创建评论",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "schema": {

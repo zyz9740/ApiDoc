@@ -34,7 +34,7 @@
         "description": "用户登录",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "The two fields are required, you can also add other fileds(e.g. email).",
@@ -84,7 +84,7 @@
         "summary": "用户注册",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "The two fields are required, you can also add other fileds(e.g. email).",
@@ -139,7 +139,7 @@
         "summary": "创建提问箱",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "The three fields are required, you can also add other fileds.",
@@ -330,7 +330,7 @@
             }
           },
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "receives <key, value> pairs. Only the owner of library can update these information. Owner_id should not be modified.",
@@ -417,7 +417,7 @@
         "summary": "创建帖子",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "These are required, you can also add other fileds.",

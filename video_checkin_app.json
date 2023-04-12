@@ -30,7 +30,7 @@
         "description": "用户登录",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "If role is 0, the user is a teacher.",
@@ -83,7 +83,7 @@
         "summary": "用户注册",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "If role is 0, the user is a teacher.",
@@ -244,7 +244,7 @@
             }
           },
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "subscribe: Value 0 means unsubscription; Value 1 means subscription.",
@@ -291,7 +291,7 @@
         "summary": "老师添加任务",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "The field is required, you can also add other fileds(e.g. authors).",
@@ -451,7 +451,7 @@
         "summary": "学生添加打卡信息",
         "parameters": [
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "The field is required, you can also add other fileds(e.g. authors).",
@@ -605,7 +605,7 @@
             }
           },
           {
-            "in": "query",
+            "in": "body",
             "name": "body",
             "required": true,
             "description": "",
