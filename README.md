@@ -67,6 +67,7 @@ request: {
     password: string,
 }
 response: {
+    # response 中的 code 可以自定义
     code: 400,
     # 无法正确处理不包含 email 的字段
     error_msg: "No email field in request",
