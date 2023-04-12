@@ -76,9 +76,6 @@
                 }
               }
             }
-          },
-          "405": {
-            "description": "Invalid input"
           }
         }
       }
@@ -136,9 +133,6 @@
                 }
               }
             }
-          },
-          "405": {
-            "description": "Invalid input"
           }
         }
       }
@@ -194,9 +188,6 @@
                 }
               }
             }
-          },
-          "405": {
-            "description": "Invalid input"
           }
         }
       }
@@ -258,12 +249,6 @@
                 }
               }
             }
-          },
-          "404": {
-            "description": "Dataset not found"
-          },
-          "405": {
-            "description": "Invalid input"
           }
         }
       }
@@ -325,15 +310,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Dataset not found"
-          },
-          "405": {
-            "description": "Invalid input"
           }
         }
       },
@@ -374,12 +350,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Dataset not found"
           }
         }
       },
@@ -419,12 +389,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Dataset not found"
           }
         }
       }
@@ -477,9 +441,6 @@
                 }
               }
             }
-          },
-          "405": {
-            "description": "Invalid input"
           }
         }
       }
@@ -541,12 +502,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Sample not found"
           }
         }
       }
@@ -589,12 +544,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Dataset not found"
           }
         }
       },
@@ -635,12 +584,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Sample not found"
           }
         }
       }
@@ -699,9 +642,6 @@
                 }
               }
             }
-          },
-          "405": {
-            "description": "Invalid input"
           }
         }
       }
@@ -763,12 +703,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Tag not found"
           }
         }
       }
@@ -811,12 +745,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Tag not found"
           }
         }
       }
