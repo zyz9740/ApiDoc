@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "\t（1）本API规范不规定cookie的使用，如果需要鉴权手段，请直接添加并在项目手册中说明即可。\n\n\t(2) 关于所有的 id 类型，可以使用 integer 类型（mysql）或者 string 类型（mongodb）, 请额外说明",
+    "description": "\t（1）本API规范不规定cookie的使用，如果需要鉴权手段，请直接添加并在项目手册中说明即可。\n\n\t(2) 关于所有的 id 类型，可以使用 integer 类型（mysql）或者 string 类型（mongodb）, 请额外说明。与本api相关的issue：https://github.com/zyz9740/ApiDoc/issues/6",
     "version": "1.0.0",
     "title": "数据标注平台"
   },
